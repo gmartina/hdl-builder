@@ -1,1 +1,1 @@
-{"Name": "spi_bus", "BaseAddress": "0x40000000", "Description": "This is the description for this register map.", "Register": [{"name": "data", "offset": 0}, {"name": "enable", "offset": 1}, {"name": "config", "offset": 2}, {"name": "flags", "offset": 5}]}
+{"Name": "spi_bus", "BaseAddress": "0x40000000", "Description": "This is the description for this register map.", "Register_data": [{"name": "data", "offset": 0, "Field_data": [{"name": "word", "info": "important info", "read": "true", "write": "true", "offset": "0", "type": "data", "enum": [""]}]}]}

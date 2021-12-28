@@ -1,0 +1,12 @@
+# Project structure
+project
+/PCB
+    /FPGA
+        /entity
+            /register, memory, fifo
+                /field
+                    /data
+                    /enum
+
+
+
