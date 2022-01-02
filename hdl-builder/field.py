@@ -22,6 +22,7 @@ class Field_data:
     read: str
     write: str
     offset: int
+    width: int
     type: str    # FieldType: data or enumerator
     Enum: List[str]
 
@@ -35,6 +36,7 @@ class Field:
                     read= "",
                     write= "",
                     offset= 0,
+                    width= 0,
                     type= "",
                     Enum= [""],
                 )
@@ -68,6 +70,10 @@ class Field:
     @classmethod
     def get_offset(cls, field_dict: dict):
         return field_dict["offset"]
+
+    @classmethod
+    def get_width(cls, field_dict: dict):
+        return field_dict["width"]
 
     @classmethod
     def get_type(cls, field_dict: dict):
@@ -115,9 +121,15 @@ class Field:
         else:
             raise Exception('Offset can only be between 0 and 31')
 
+    def set_width(self, width: int):
+        if width > 0 or width <= 32:
+            self.__field_data.width = width
+        else:
+            raise Exception('width can only be between 1 and 32')
+
 
     def set_type(self, type: str):
-        if type == "data" or type == "enum":
+        if type == FieldType_data.data or type == FieldType_data.enum:
             self.__field_data.type = type
         else:
             raise Exception('Field type can only be data or enum.')
@@ -140,12 +152,24 @@ class Field:
     def get_offset(self):
         return self.__field_data.offset
 
+    def get_width(self):
+        return self.__field_data.width
+
     def get_type(self):
         return self.__field_data.type
 
     def get_enum(self):
         return self.__field_data.Enum
 
+    def add_enum(self, new_enum: str):
+        if len(new_enum) > 0:
+            self.__field_data.Enum.append(new_enum)
+        else:
+            raise Exception('Enum string can not be empty.')
+
+
+    def clear_enum(self):
+        self.__field_data.Enum.clear()
 
     def get_dict(self):
         return dataclasses.asdict(self.__field_data)

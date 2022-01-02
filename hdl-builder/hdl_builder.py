@@ -10,7 +10,10 @@ import json
 from dataclasses import dataclass, asdict
 from typing import List
 from c_gen import C_gen as cgen
-from field import Field, Field_data
+from field import Field, Field_data, FieldType_data
+from register import Register, Register_data
+from entity import Entity, Entity_data
+import logging
 
 # class FieldType_data:
 #     data = "data"
@@ -26,20 +29,6 @@ from field import Field, Field_data
 #     offset: int
 #     type: int    # FieldType: data or enumerator
 #     Enum: List[str]
-
-@dataclass
-class Register_data:
-    name: str
-    offset: int
-    Field_data: List[Field_data]
-
-
-@dataclass
-class Entity_data:
-    Name: str
-    BaseAddress: str
-    Description: str
-    Register_data: List[Register_data]
 
 
 c_my_map = {
@@ -70,6 +59,44 @@ c_my_map = {
 
 def hdl_build():
     print("hdl_build()")
+
+
+def class_test():
+    field1 = Field()
+    field1.set_name("trigger_fuse")
+    field1.set_write("true")
+    field1.set_read("false")
+    field1.set_offset(0)
+    field1.set_width(1)
+    field1.set_type(FieldType_data.data)
+    print(field1.get_dict())
+    field2 = Field()
+    field2.set_offset(5)
+    field2.set_width(5)
+
+    register1 = Register()
+    register1.set_name("triggers")
+    register1.set_offset(0)
+    register1.set_description("Register for all triggers")
+    register1.add_field(field1.get_dict())
+    register1.add_field(field2.get_dict())
+
+    print(register1.get_dict())
+
+    entity1 = Entity()
+    entity1.set_name("fuse_entity")
+    entity1.set_baseaddress("0x40000000")
+    entity1.set_description("This is a fuse entity")
+    entity1.add_register(register1.get_dict())
+    entity1.add_register(register1.get_dict())
+
+    print(entity1.get_dict())
+
+    # Write json with dict
+    with open('entity_out.json', 'w') as json_file:
+        json.dump(entity1.get_dict(), json_file, indent=4)
+
+
 
 
 def json_test():

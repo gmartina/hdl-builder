@@ -11,8 +11,8 @@ def main():
     """Entry point for the application script"""
     print("Call your main application code here")
     hdl_builder.hdl_build()
-    hdl_builder.json_test()
-
+    #hdl_builder.json_test()
+    hdl_builder.class_test()
 
 if __name__ == "__main__":
     main()
