@@ -49,22 +49,22 @@ class Register:
 
 
     @classmethod
-    def get_name(cls, entity_dict: dict):
+    def get_name_from_dict(cls, entity_dict: dict):
         return entity_dict["name"]
 
 
     @classmethod
-    def get_offset(cls, entity_dict: dict):
+    def get_offset_from_dict(cls, entity_dict: dict):
         return entity_dict["offset"]
 
 
     @classmethod
-    def get_description(cls, entity_dict: dict):
+    def get_description_from_dict(cls, entity_dict: dict):
         return entity_dict["description"]
 
 
     @classmethod
-    def get_field_data(cls, entity_dict: dict):
+    def get_field_data_from_dict(cls, entity_dict: dict):
         return entity_dict["Field_data"]
 
 

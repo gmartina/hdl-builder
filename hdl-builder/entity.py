@@ -23,7 +23,7 @@ class Entity:
                     Name= "",
                     BaseAddress= "",
                     Description= "",
-                    Register_data= [""],
+                    Register_data= [],
                 )
 
 
@@ -35,27 +35,27 @@ class Entity:
         pass
 
     @classmethod
-    def get_name(cls, entity_dict: dict):
+    def get_name_from_dict(cls, entity_dict: dict):
         return entity_dict["Name"]
 
 
     @classmethod
-    def get_baseaddress(cls, entity_dict: dict):
+    def get_baseaddress_from_dict(cls, entity_dict: dict):
         return entity_dict["BaseAddress"]
 
 
     @classmethod
-    def get_description(cls, entity_dict: dict):
+    def get_description_from_dict(cls, entity_dict: dict):
         return entity_dict["Description"]
 
 
     @classmethod
-    def get_number_of_registers(cls, entity_dict: dict):
+    def get_number_of_registers_from_dict(cls, entity_dict: dict):
         return len(entity_dict["Register_data"])
 
 
     @classmethod
-    def get_registers(cls, entity_dict: dict):
+    def get_registers_from_dict(cls, entity_dict: dict):
         return entity_dict["Register_data"]
 
 

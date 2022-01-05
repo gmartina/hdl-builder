@@ -13,6 +13,7 @@ from c_gen import C_gen as cgen
 from field import Field, Field_data, FieldType_data
 from register import Register, Register_data
 from entity import Entity, Entity_data
+from fpga import Fpga, FPGA_data
 import logging
 
 # class FieldType_data:
@@ -62,21 +63,28 @@ def hdl_build():
 
 
 def class_test():
+
+
     field1 = Field()
     field1.set_name("trigger_fuse")
     field1.set_write("true")
     field1.set_read("false")
-    field1.set_offset(0)
-    field1.set_width(1)
-    field1.set_type(FieldType_data.data)
+    field1.set_offset(4)
+    field1.set_width(4)
+    field1.set_type(FieldType_data.enum)
+    field1.add_enum("START")
+    field1.add_enum("STOP")
+    field1.add_enum("FIRE")
+    field1.add_enum("HOLD")
     print(field1.get_dict())
     field2 = Field()
     field2.set_offset(5)
     field2.set_width(5)
+    field2.set_type(FieldType_data.data)
 
     register1 = Register()
     register1.set_name("triggers")
-    register1.set_offset(0)
+    register1.set_offset(3)
     register1.set_description("Register for all triggers")
     register1.add_field(field1.get_dict())
     register1.add_field(field2.get_dict())
@@ -92,10 +100,16 @@ def class_test():
 
     print(entity1.get_dict())
 
-    # Write json with dict
-    with open('entity_out.json', 'w') as json_file:
-        json.dump(entity1.get_dict(), json_file, indent=4)
+    fpga1 = Fpga()
+    fpga1.set_name("LET")
+    fpga1.set_description("FPGA....")
+    fpga1.add_entity(entity1.get_dict())
 
+    # Write json with dict
+    with open('fpga_out.json', 'w') as json_file:
+        json.dump(fpga1.get_dict(), json_file, indent=4)
+
+    cgen.gen_entity_header_file(entity1.get_dict())
 
 
 

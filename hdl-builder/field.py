@@ -38,7 +38,7 @@ class Field:
                     offset= 0,
                     width= 0,
                     type= "",
-                    Enum= [""],
+                    Enum= [],
                 )
 
 
@@ -50,48 +50,48 @@ class Field:
         pass
 
     @classmethod
-    def get_name(cls, field_dict: dict):
+    def get_name_from_dict(cls, field_dict: dict):
         return field_dict["name"]
 
 
     @classmethod
-    def get_info(cls, field_dict: dict):
+    def get_info_from_dict(cls, field_dict: dict):
         return field_dict["info"]
 
 
     @classmethod
-    def get_read_property(cls, field_dict: dict):
+    def get_read_property_from_dict(cls, field_dict: dict):
         return field_dict["read"]
 
     @classmethod
-    def get_write_property(cls, field_dict: dict):
+    def get_write_property_from_dict(cls, field_dict: dict):
         return field_dict["write"]
 
     @classmethod
-    def get_offset(cls, field_dict: dict):
+    def get_offset_from_dict(cls, field_dict: dict):
         return field_dict["offset"]
 
     @classmethod
-    def get_width(cls, field_dict: dict):
+    def get_width_from_dict(cls, field_dict: dict):
         return field_dict["width"]
 
     @classmethod
-    def get_type(cls, field_dict: dict):
+    def get_type_from_dict(cls, field_dict: dict):
         return field_dict["type"]
 
 
     @classmethod
-    def get_type(cls, field_dict: dict):
+    def get_type_from_dict(cls, field_dict: dict):
         return field_dict["type"]
 
 
     @classmethod
-    def get_enum(cls, field_dict: dict):
+    def get_enum_from_dict(cls, field_dict: dict):
         return field_dict["Enum"]
 
 
     @classmethod
-    def get_fields(cls, field_dict: dict):
+    def get_fields_from_dict(cls, field_dict: dict):
         return field_dict["Field_data"]
 
 
